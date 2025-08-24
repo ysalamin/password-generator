@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+        <title>Password Generator</title>
+
+        <link rel="stylesheet" href="styles.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&family=Karla:wght@800&family=Montserrat&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div id="container">
+
+            <!-- Text Section-->
+            <div id="left">
+                <div id="white"> 
+                    <h1 id="gen-el">Generate a <span id="green"> <br> random password</span></h1>
+                    <p id="gray"> Never use an insecure password again. </p>
+                </div>
+                
+                <!-- Generate Button Section-->
+                <button id="btn", onclick="GeneratePasswords()"> Generate passwords </button>
+            </div>
+            <!-- Line Section-->
+            <div id="line"> </div>
+
+            <!-- Bottom results Section-->
+            <div id="results">
+                <div id="firstPassword" onclick="copyOnClick('pass1-el')">
+                    <p id="pass1-el"></p>
+                </div>
+                <div id="secondPassword" onclick="copyOnClick('pass2-el')">
+                    <p id="pass2-el"></p>    
+                </div>
+            </div>
+
+        </div> <!-- Fin container-->
+        
+        <script src="scripts.js"></script>
+    </body>
+</html>
