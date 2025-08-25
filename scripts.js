@@ -1,37 +1,88 @@
-const characters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
-    "/"];
-    
-var slider = document.getElementById("myRange")
-var passLength = document.getElementById("length-output")
-    
+// --- GLOBAL CONSTANTS ---
+
+// Define the available character sets, separated for clarity.
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".split('');
+const numbers = "0123456789".split('');
+const symbols = "~`!@#$%^&*()_-+={[}]|:;<>./?".split('');
+
+// Select the DOM elements we interact with often.
+const slider = document.getElementById("myRange");
+const passLength = document.getElementById("length-output");
+
+// --- EVENT LISTENER FOR THE SLIDER ---
+
+// Update the password length display in real-time as the slider is moved.
 slider.addEventListener('input', function() {
+    // 'this.value' gets the current value of the slider.
     passLength.textContent = this.value;
-})
+});
+
+// --- MAIN GENERATION FUNCTION ---
 
 function GeneratePasswords() {
-    pass1 = ""
-    pass2 = ""
-    for (let i = 0; i < passLength; i +=1 ) {
-        let char1 = characters[Math.floor(Math.random()* characters.length)]
-        let char2 = characters[Math.floor(Math.random()* characters.length)]
-        pass1 += char1
-        pass2 += char2
+    // Initialize the strings that will hold the generated passwords.
+    let pass1 = "";
+    let pass2 = "";
+
+    // Get the checkbox elements each time the function is called.
+    const numbersInput = document.getElementById("numbers-checkbox");
+    const charactersInput = document.getElementById("characters-checkbox");
+
+    // Read the current state (true/false) of the checkboxes.
+    const numbersIsChecked = numbersInput.checked;
+    const charactersIsChecked = charactersInput.checked;
+
+    // --- BUILD THE ALLOWED CHARACTER SET ---
+    
+    // Start with a copy of the letters array (always included).
+    let allowedChars = [...letters];
+    
+    // If the "numbers" option is checked, add the numbers to the array.
+    if (numbersIsChecked) {
+        allowedChars = allowedChars.concat(numbers);
+    }
+    
+    // If the "characters" option is checked, add the symbols as well.
+    if (charactersIsChecked) {
+        allowedChars = allowedChars.concat(symbols);
     }
 
-    pass1El = document.getElementById("pass1-el")
-    pass2El = document.getElementById("pass2-el")
+    // --- PASSWORD GENERATION LOOP ---
     
-    pass1El.textContent = pass1
-    pass2El.textContent = pass2
+    // Loop as many times as the length chosen by the user.
+    for (let i = 0; i < passLength.textContent; i++) {
+        // For each password, choose a random character from the allowed character set.
+        let char1 = allowedChars[Math.floor(Math.random() * allowedChars.length)];
+        let char2 = allowedChars[Math.floor(Math.random() * allowedChars.length)];
+        
+        // Concatenate (add) the new character to the password string.
+        pass1 += char1;
+        pass2 += char2;
+    }
+
+    // --- UPDATE THE DISPLAY ---
+    
+    // Select the <p> elements where the passwords will be displayed.
+    const pass1El = document.getElementById("pass1-el");
+    const pass2El = document.getElementById("pass2-el");
+    
+    // Update the text content of the elements with the newly generated passwords.
+    pass1El.textContent = pass1;
+    pass2El.textContent = pass2;
 }
 
+// --- COPY TO CLIPBOARD FUNCTION ---
+
 function copyOnClick(id) {
+    // Get the DOM element corresponding to the provided ID.
+    const element = document.getElementById(id);
 
-    let element = document.getElementById(id)
+    // Get the text content from that element.
+    const text = element.textContent;
 
-    let text = element.textContent
+    // Use the browser's Clipboard API to write the text to the clipboard.
+    navigator.clipboard.writeText(text);
 
-    navigator.clipboard.writeText(text)
-
-    alert("Copied the text: " + text)
+    // Display an alert to confirm that the text has been copied.
+    alert("Copied the text: " + text);
 }

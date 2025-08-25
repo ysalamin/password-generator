@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,6 @@
     <body>
         <div id="container">
 
-            <!-- Text Section-->
             <div id="left">
                 <div id="white"> 
                     <h1 id="gen-el">Generate a <span id="green"> <br> random password</span></h1>
@@ -22,33 +22,42 @@
                 </div>
                 
                 <div id="slider-section"> 
-                    <input type="range" min=7 max="15" value=11 class="slider" id="myRange">
+                    <input type="range" min="7" max="15" value="11" class="slider" id="myRange">
                     <div id="length-text">
                         <p id="length-displaytext"> Password length : </p>
                         <p id="length-output"> 11 </p>
                     </div>
-
                 </div>
-                
 
-                <button id="btn", onclick="GeneratePasswords()"> Generate passwords </button>
-                
+                <div id="btn-and-more">
+                    <button id="btn" onclick="GeneratePasswords()"> Generate passwords </button>
+                    
+                    <div id="options">
+                        <label class="container"> Numbers
+                            <input type="checkbox" checked="checked" id="numbers-checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+    
+                        <label class="container"> Characters
+                            <input type="checkbox" id="characters-checkbox">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
             </div>
-            <!-- Line Section-->
+            
             <div id="line"> </div>
 
-            <!-- Bottom results Section-->
             <div id="results">
                 <div id="firstPassword" onclick="copyOnClick('pass1-el')">
                     <p id="pass1-el"></p>
                 </div>
+                
                 <div id="secondPassword" onclick="copyOnClick('pass2-el')">
-                    <p id="pass2-el"></p>    
+                    <p id="pass2-el"></p>      
                 </div>
             </div>
 
-        </div> <!-- Fin container-->
-        
-        <script src="scripts.js"></script>
+        </div> <script src="scripts.js"></script>
     </body>
 </html>

@@ -1,57 +1,81 @@
-/*
-COLORS :
-background : #1F2937
-white : #ECFDF5
-green : #10B981
-graytext : #D5D4D8
-gray result : #273549
+/* --- CSS VARIABLES (CUSTOM PROPERTIES) --- */
+/* Defines a global color palette for easy reuse and maintenance. */
+:root {
+    --background: #1F2937;
+    --white: #ECFDF5;
+    --green: #10B981;
+    --graytext: #D5D4D8;
+    --grayresult: #273549;
+}
 
-*/
-
+/* --- GLOBAL STYLES --- */
 body {
-    margin: 0;
+    background-color: var(--background);
+    margin: 0; /* Removes default browser margin */
     font-family: "Karla", sans-serif;
 }
 
+/* --- LAYOUT STYLES --- */
 
-
+/* Main application container */
 #container {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    justify-content: space-evenly; /* Distributes space evenly between elements */
+    align-items: center; /* Centers items horizontally */
     width: 550px;
     height: 550px;
-    background-color: #1F2937;
-    align-items: center;
-    justify-content: space-evenly;
+    margin: auto; /* Centers the container on the page */
     padding: 0 100px;
+    background-color: var(--background);
 }
 
+/* Container for the top part of the app (header and controls) */
 #left {
-    align-self: flex-start;
+    align-self: flex-start; /* Aligns this container to the start of the flexbox */
+    width: 100%; /* Ensures it takes the full width of its parent */
 }
+
+/* Container for the button and checkboxes */
+#btn-and-more {
+    display: flex;
+    align-items: center; /* Vertically aligns the button and checkboxes */
+    gap: 24px; /* Creates a 24px space between the button and the options */
+}
+
+/* Container for the generated password results */
+#results {
+    display: flex;
+    justify-content: space-between; /* Puts maximum space between the two password boxes */
+    width: 100%;
+}
+
+/* --- TYPOGRAPHY AND TEXT STYLES --- */
 
 #white {
-    color: #ECFDF5;
+    color: var(--white);
     line-height: 40px;
     letter-spacing: -2.5%;
     font-weight: 800;
 }
 
 #green {
-    color: #10B981
+    color: var(--green);
 }
 
 #gray {
-    color: #a3a3a3;
+    color: var(--graytext);
     margin-bottom: 50px;
     font-family: "Inter", sans-serif;
     font-weight: 400;
 }
 
+/* --- COMPONENT STYLES --- */
+
+/* Generate Passwords button */
 #btn {
-    background-color: #10B981;
-    color: #ECFDF5;
+    background-color: var(--green);
+    color: var(--white);
     line-height: 24px;
     border-radius: 6px;
     padding: 9px 17px 9px 15px;
@@ -59,75 +83,84 @@ body {
     cursor: pointer;
 }
 
+/* Decorative line */
 #line {
     width: 100%;
-    border: 1px solid #273549;
+    border: 1px solid var(--grayresult);
 }
 
-#results{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
+/* Individual password result boxes */
 #firstPassword, #secondPassword {
     width: 211px;
     height: 39px;
-    background-color: #273549;
+    background-color: var(--grayresult);
     border-radius: 6px;
     cursor: pointer;
 }
 
-#pass1-el, #pass2-el{
-    color: #10B981;
+/* Text elements inside the result boxes */
+#pass1-el, #pass2-el {
+    color: var(--green);
     text-align: center;
-    line-height: 39px;
-    margin: 0 ;
+    line-height: 39px; /* Vertically centers the text by matching the container height */
+    margin: 0;
 }
 
-/* The slider itself */
+/* --- SLIDER STYLES --- */
+
+/* Main slider track */
 .slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
-  appearance: none;
-  width: 100%; /* Full-width */
-  height: 15px; /* Specified height */
-  background: #d3d3d3; /* Grey background */
-  outline: none; /* Remove outline */
-  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
-  transition: opacity .2s;
-  border-radius: 5px
+    -webkit-appearance: none; /* Removes default browser styling on Chrome/Safari */
+    appearance: none;
+    width: 100%;
+    height: 15px;
+    background: var(--white);
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 5px;
 }
 
-/* Mouse-over effects */
+/* Hover effect for the slider track */
 .slider:hover {
-  opacity: 1; /* Fully shown on mouse-over */
+    opacity: 1;
 }
 
+/* Slider handle (thumb) for Chrome/Safari */
 .slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #10B981; /* Green background */
-  cursor: pointer; /* Cursor on hover */
-  border-radius: 50%;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: var(--green);
+    cursor: pointer;
+    border-radius: 50%; /* Makes the handle a circle */
 }
 
+/* Slider handle (thumb) for Firefox */
 .slider::-moz-range-thumb {
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
-  background: #10B981; /* Green background */
-  cursor: pointer; /* Cursor on hover */
+    width: 25px;
+    height: 25px;
+    background: var(--green);
+    cursor: pointer;
+    border-radius: 50%;
 }
 
-#length-text{
+/* Container for the "Password length: X" text */
+#length-text {
     display: flex;
-    justify-content: space-between;
     width: 180px;
-    color:#10B981;
+    color: var(--green);
 }
 
-#length-displaytext{
-    color:#ECFDF5
+/* "Password length:" text */
+#length-displaytext {
+    color: var(--white);
+}
+
+/* Container for the checkbox options */
+#options {
+    line-height: 40px;
+    color: var(--white);
 }
