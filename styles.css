@@ -152,6 +152,7 @@ body {
     display: flex;
     width: 180px;
     color: var(--green);
+    justify-content: space-between; /* Spaces out the text and number */
 }
 
 /* "Password length:" text */
