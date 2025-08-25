@@ -7,7 +7,7 @@ A simple and effective password generator built with vanilla HTML, CSS, and Java
 ## 🚀 Live Demo
 
 You can try out the live version of this project here: 
-**[➡️ Your GitHub Pages Link Here ⬅️]** ---
+**[➡️(https://ysalamin.github.io/password-generator/) ⬅️]** ---
 
 ## ✨ Features
 
