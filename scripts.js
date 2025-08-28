@@ -17,6 +17,26 @@ slider.addEventListener('input', function() {
     passLength.textContent = this.value;
 });
 
+// --- HELPING FUNCTION FOR SECURITY ---
+
+/**
+ * Generate a secure random index using crypto
+ * @param {number} arrayLength The length of the array
+ * @return {number} A secure random index from 0 to arrayLength - 1 
+ */
+function getSecureRandomIdx(arrayLength) {
+    // Recipient of the randomness
+    let arrayToFill = new Uint32Array(1)
+
+    // Fill with randomness
+    window.crypto.getRandomValues(arrayToFill)
+
+    // Shrink to the array sizes
+    arrayToFill[0] = arrayToFill[0] % arrayLength;
+
+    return arrayToFill[0]
+}
+
 // --- MAIN GENERATION FUNCTION ---
 
 function GeneratePasswords() {
@@ -52,8 +72,8 @@ function GeneratePasswords() {
     // Loop as many times as the length chosen by the user.
     for (let i = 0; i < passLength.textContent; i++) {
         // For each password, choose a random character from the allowed character set.
-        let char1 = allowedChars[Math.floor(Math.random() * allowedChars.length)];
-        let char2 = allowedChars[Math.floor(Math.random() * allowedChars.length)];
+        let char1 = allowedChars[getSecureRandomIdx(allowedChars.length)];
+        let char2 = allowedChars[getSecureRandomIdx(allowedChars.length)];
         
         // Concatenate (add) the new character to the password string.
         pass1 += char1;
